@@ -20,7 +20,7 @@
         Title
         =============================================
         -->
-        <title>SELVEDIN - PORTFOLIO - MASTER</title>
+        <title>SELVEDIN - PORTFOLIO</title>
 
 
         <!--
@@ -34,7 +34,11 @@
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/pe-icon-7-stroke.css">
 
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
         <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
         <link rel="stylesheet" href="assets/lib/nivo-lightbox/nivo-lightbox.css">
@@ -43,12 +47,20 @@
 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-
         <script type="text/javascript" src="assets/js/modernizr.custom.97074.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     
     <body>
+        <div style='position:fixed; top:0; left:0;width:100%;padding:0;margin:0;z-index:999;'>
+            <div class='col-md-12'>
+                <?php
+                    if(isset($_COOKIE['errors'])){echo $_COOKIE['errors'];setcookie("errors", "", time() - 3600);}
+                    else if(isset($_COOKIE['error'])){echo $_COOKIE['error'];setcookie("error", "", time() - 3600);}
+                    else if(isset($_COOKIE['success'])){echo $_COOKIE['success'];setcookie("success", "", time() - 3600);}
+                ?>
+            </div>
+        </div>
 
         <div id="preloader">
             <div id="spinner">
@@ -743,7 +755,43 @@
 
                                         <div class="col-md-6 col-sm-12">
                                             <div class="content-box">
-                                                
+                                            <form action="assets/php/contact-form.php" class="contact-form" id="contactForm" method="post" name="contactform" >
+
+                                                <div class="g-recaptcha" 
+                                                    data-sitekey="6LfwU-QUAAAAABR57Kj5WGC7Sq8RJB_x1wiS68Ph"
+                                                    data-size="invisible"
+                                                    data-callback="onSubmit">
+                                                </div>
+
+                                                <div class="form-group has-feedback">
+                                                    <input class="form-control required" id="name" name="name" placeholder="your name *" type="text" required="true">
+                                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group has-feedback">
+                                                    <input class="form-control required" id="email" name="email" placeholder="your email *" type="email" required="true">
+                                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input class="form-control" id="website" name="website" placeholder="your website" type="url">
+                                                </div>
+
+                                                <div class="form-group has-feedback">
+                                                    <textarea class="form-control required" id="message" name="message" placeholder="type here" rows="5" required="true"></textarea>
+                                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                                <div id="contactFormResponse"></div>
+
+                                                <button id="cfsubmit" type="submit" class="btn btn-submit">
+                                                    <i class="fa fa-paper-plane"></i>
+                                                </button>
+
+                                                </form>
                                             </div> <!-- /.content-box -->
                                         </div>
                                     </div>
@@ -768,9 +816,7 @@
         JavaScripts
         =============================================
         -->
-
-        <script type="text/javascript" src="assets/js/jquery.js"></script>
-        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" ></script>
         <script type="text/javascript" src="assets/js/slick.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.mixitup.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.hoverdir.js"></script>
@@ -778,8 +824,25 @@
         <script type="text/javascript" src="assets/js/wow.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.browser.min.js"></script>
         <script type="text/javascript" src="assets/js/script.js"></script>
-
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
+
+            $(document).ready(function(){
+                $('#contactForm').validator().on('submit', function (e) {
+                if (e.isDefaultPrevented()) {
+                } else {
+                    // everything looks good!
+                    e.preventDefault();
+                    grecaptcha.execute();
+                }
+                });
+            }); 
+
+            function onSubmit(token){
+                $('#cfsubmit').text('Sending ...');
+                document.getElementById("contactForm").submit();
+            };
+            
             if ( $.browser.msie ) {
                 $(".page-bg").each(function () {
                     $(this).css("background-attachment", "scroll");

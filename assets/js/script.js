@@ -101,7 +101,7 @@ $(document).ready(function () {
 /*------------------------------------------
             3. Contact form
 ------------------------------------------*/
-
+/*
 $(document).ready(function () {
 
     $("#contactForm").submit(function(e){
@@ -142,6 +142,7 @@ $(document).ready(function () {
 
     });
 });
+*/
 
 /*-----------------------------------------
             Preloader
@@ -151,7 +152,11 @@ $(document).ready(function() {
     
     setTimeout(function(){
         $('body').addClass('loaded');
-    }, 1000);
+    }, 500);
+
+    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+        $(".alert").slideUp(5000);
+    });
     
 });
 
