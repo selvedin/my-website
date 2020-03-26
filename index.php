@@ -839,8 +839,9 @@
             }); 
 
             function onSubmit(token){
-                $('#cfsubmit').text('Sending ...');
+                $('#cfsubmit').remove;
                 document.getElementById("contactForm").submit();
+                $('.form-control').prop('disabled', true);
             };
             
             if ( $.browser.msie ) {
