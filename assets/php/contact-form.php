@@ -89,5 +89,5 @@ $result="";
 		$result=$e->getMessage();
 	}
 
-	header("Location: https://selvedin.com");
+	header("Location: http://selvedin.com");
 	
