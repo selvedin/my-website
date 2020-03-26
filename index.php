@@ -839,7 +839,7 @@
             }); 
 
             function onSubmit(token){
-                $('#cfsubmit').remove;
+                $('#cfsubmit').remove();
                 document.getElementById("contactForm").submit();
                 $('.form-control').prop('disabled', true);
             };
