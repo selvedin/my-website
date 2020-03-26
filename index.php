@@ -20,7 +20,7 @@
         Title
         =============================================
         -->
-        <title>SELVEDIN - PORTFOLIO - DEMO</title>
+        <title>SELVEDIN - PORTFOLIO - (DEMO)</title>
 
 
         <!--
