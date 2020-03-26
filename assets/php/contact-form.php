@@ -89,5 +89,5 @@ $result="";
 		$result=$e->getMessage();
 	}
 
-	header("Location: http://localhost/DEV/MY/my-website");
+	header("Location: https://selvedin.com");
 	
