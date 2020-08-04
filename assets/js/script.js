@@ -13,7 +13,7 @@ $(document).ready(function () {
         adaptiveHeight: true,
         asNavFor: '.slider-nav'
     });
-    
+
     $('.slider-nav').slick({
         slidesToShow: 6,
         slidesToScroll: 1,
@@ -21,20 +21,20 @@ $(document).ready(function () {
         infinite: false,
         swipeToSlide: true,
         responsive: [
-        {
-            breakpoint: 992,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
             }
-        },
-        {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1
-            }
-        }
         ],
         focusOnSelect: true
     });
@@ -56,13 +56,13 @@ $(document).ready(function () {
         }
     });
 
-    $controls.on('click', '.filter', function(){
+    $controls.on('click', '.filter', function () {
         var $btn = $(this),
-        filter = $btn.attr('data-filter');
-    
+            filter = $btn.attr('data-filter');
+
         $btn.addClass('active').siblings().removeClass('active');
 
-        $container.mixItUp('filter', 'none', function(){
+        $container.mixItUp('filter', 'none', function () {
             $container.mixItUp('filter', filter);
         });
     });
@@ -71,31 +71,29 @@ $(document).ready(function () {
 /*------------------ 2.2 portfolio items hover-style ---------------------*/
 
 $(document).ready(function () {
-    $('.portfolio-item > .item-img').each( function() {
+    $('.portfolio-item > .item-img').each(function () {
         $(this).hoverdir({
-            hoverDelay : 50
-        }); 
+            hoverDelay: 50
+        });
     });
-    $(".portfolio-item > .item-img").hover(function() {
+    $(".portfolio-item > .item-img").hover(function () {
         $(this).find("a").css("box-shadow", "0px 0px 15px #b6b5b5");
-    }, function() {
+    }, function () {
         $(this).find("a").css("box-shadow", "none");
     });
 });
 
 /*---------------  2.3 portfolio items are zoomed by nivo lightbox  -----------*/
 
-$(document).ready(function () {
-    $('.item-zoom').nivoLightbox({
-        type:'inline',
-    });
+// $(document).ready(function () {
+// $('.item-zoom').nivoLightbox();
 
-    $('#videoBtn').nivoLightbox({
-        beforeHideLightbox: function(){
-            $(".nivo-lightbox-content iframe").remove();
-        }
-    });
-});
+// $('#videoBtn').nivoLightbox({
+//     beforeHideLightbox: function () {
+//         $(".nivo-lightbox-content iframe").remove();
+//     }
+// });
+// });
 
 
 /*------------------------------------------
@@ -148,22 +146,22 @@ $(document).ready(function () {
             Preloader
 --------------------------------------------*/
 
-$(document).ready(function() {
-    
-    setTimeout(function(){
+$(document).ready(function () {
+
+    setTimeout(function () {
         $('body').addClass('loaded');
     }, 500);
 
-    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+    $(".alert").fadeTo(5000, 500).slideUp(500, function () {
         $(".alert").slideUp(5000);
     });
-    
+
 });
 
 /*-----------------------------------------
             wow initialization
 --------------------------------------------*/
 
-$(document).ready(function() {
+$(document).ready(function () {
     new WOW().init();
 });
